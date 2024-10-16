@@ -1,0 +1,35 @@
+#popup-wrapper {
+  position:sticky;
+  z-index:10;
+}
+
+#popup-menu {
+  position:absolute;
+  left:0px;
+  right:0px;
+  border-top: 1px solid #adadad;
+  border-bottom: 1px solid #adadad;
+}
+
+.popup-menu-item {
+  padding:10px;
+  height:20px;
+  background:var(--content-background);
+  cursor: pointer;
+  overflow-x:hidden;
+  white-space:pre;
+}
+
+.popup-menu-item-selected-user {
+  background:var(--user_ultralight);
+}
+
+.popup-menu-item-selected-flag,
+.popup-menu-item-selected-emoji {
+  background:var(--low-contrast-background)
+}
+
+.popup-menu-item-username {
+  font-weight:bold;
+  color:var(--user_dark)
+}

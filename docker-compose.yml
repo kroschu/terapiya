@@ -1,0 +1,146 @@
+version: '3.7'
+
+services:
+  
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: "code-server"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=indposhyv
+      - PROXY_DOMAIN=code.stopbot.pp.ua 
+      - DEFAULT_WORKSPACE=/config/
+    volumes:
+      - $PWD:/config
+    ports:
+      - 8446:8443
+    restart: unless-stopped
+    networks:
+      - internal
+    
+  synapse:
+    container_name: "synapse"
+    restart: always
+    image: "matrixdotorg/synapse:v1.36.0"
+    volumes:
+      - "./synapse_data:/data"
+    environment:
+      - VIRTUAL_HOST=matrix.stopbot.pp.ua
+      - VIRTUAL_PORT=8008
+      - SYNAPSE_SERVER_NAME=matrix.stopbot.pp.ua
+      - SYNAPSE_REPORT_STATS=yes
+    networks:
+      - internal
+    ports:
+      - "8008:8008"
+
+  flowise:
+    image: kroschu/flowice-arm64:latest
+    container_name: "flowise"
+    restart: always
+    environment:
+      - PORT=3000
+      - FLOWISE_USERNAME=droidian
+      - FLOWISE_PASSWORD=1234
+    networks:
+      - internal
+    ports:
+      - "8070:3000"
+    volumes:
+      - ./flowise:/root/.flowise
+    command: /bin/sh -c "sleep 3 && flowise start"
+
+  node-red:
+    image: nodered/node-red:latest-18-minimal
+    container_name: "node-red"
+    restart: always
+    environment:
+      - TZ=Europe/Kiev
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+    networks:
+      - internal
+
+  updater:
+    container_name: "updater"
+    restart: always
+    image: kroschu/mwcs-arm64:latest
+    volumes:
+      - ./mwcs:/var/schema
+    ports:
+      - "8009:8080"
+    networks:
+      - internal
+
+  cactus:
+    container_name: "cactus"
+    hostname: cactus
+    restart: always
+    image: kroschu/cactus-comments-arm64:latest
+    env_file: ./cactus/cactus.env
+    networks:
+      - internal
+    ports:
+      - "5000:5000"
+
+  nginx:
+    image: arm64v8/nginx:alpine
+    container_name: "nginx"
+    volumes:
+      - ./www:/usr/share/nginx/html:ro
+    ports:
+      - "8181:80"
+    restart: always
+    networks:
+      - internal
+
+  dropbox:
+    image: rbonghi/dropbox:latest
+    command: ["--fromDropbox", "-i", "5"]
+    container_name: "dropbox"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DROPBOX_APP_KEY=h8niqgkxtssn6bu
+      - DROPBOX_APP_SECRET=722fiiqu5z16pjf
+      - DROPBOX_REFRESH_TOKEN=VYeisRBtNucAAAAAAAAAAa3Q__2GNlSeHuwJ7QYkdWiKeNOFYQn21WrLDNY9Ab5I
+    restart: unless-stopped
+    volumes:
+      - ./www/dropbox:/dropbox
+    networks:
+      - internal
+
+  nginx-pm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    container_name: "nginx-pm"
+    ports:
+      - '8282:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '82:81' # Admin Web Port
+    volumes:
+      - ./nginx-pm:/data
+      - ./nginx-pm/letsencrypt:/etc/letsencrypt
+    networks:
+      - internal
+
+  dashy:
+    container_name: "Dashy"
+    image: kroschu/dash-arm64:latest
+    ports:
+      - 8040:80
+    volumes:
+      - ./dashy:/app/public/
+    networks:
+      - internal
+
+volumes:
+  matrix_db:
+  typebot_db_data:
+
+networks:
+  internal:
+    attachable: true

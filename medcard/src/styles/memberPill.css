@@ -1,0 +1,11 @@
+.member-pill {
+    border-radius:5px;
+    padding:5px;
+    white-space: nowrap;
+    color:var(--user_dark);
+    font-weight:500;
+    display:inline-block;
+    overflow-x:hidden;
+    text-overflow:ellipsis;
+    background: var(--user_light);
+}

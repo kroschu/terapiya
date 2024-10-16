@@ -1,0 +1,215 @@
+#page-nav {
+    position:fixed;
+    bottom:0px;
+    width:100%;
+    height:var(--navHeight);
+    z-index:5;
+    transition: height 0.5s ease;
+}
+
+#nav-background{
+    background: var(--max-contrast-background);
+    position:absolute;
+    width:100%;
+    top:0px;
+    bottom:0px;
+}
+
+#nav-pages {
+    display:flex;
+    position:absolute;
+    bottom: var(--navHeight);
+    align-items: center;
+    height:50px;
+    width: var(--contentWidth);
+    overflow-y:scroll;
+    transition: bottom 0.5s ease-in-out;
+}
+
+html[data-scrollbars="hidden"] #nav-pages {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+html[data-scrollbars="hidden"] #nav-pages::-webkit-scrollbar { display: none; }
+
+.nav-hidden {
+    bottom:0px !important;
+}
+
+#nav-pages > button:first-child {
+    margin-left:auto
+}
+
+#nav-pages > button:last-child {
+    margin-right:auto
+}
+
+#nav-pages > button {
+    cursor:pointer;
+    background:var(--content-background);
+    border:2px solid black;
+    min-width:40px;
+    min-height:40px;
+    border-radius:30px;
+    margin-left:5px;
+    margin-right:5px;
+    text-align:center;
+}
+
+#nav-pages > button.typing {
+    animation: pulse-color 2s infinite; 
+    animation-timing-function:ease;
+}
+
+#nav-pages > button:focus {
+  font-weight: bold;
+}
+
+.nav-button-wrapper {
+    position:relative;
+    display: flex;
+    height:75px;
+    align-items: center;
+    justify-content:center;
+    max-width: var(--contentWidth);
+    transition: var(--transitionSizing)
+}
+
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+    .nav-button-wrapper {
+        display: grid;
+        grid-template-columns: repeat(9,1fr);
+        transform: scale(0.8);
+        transform-origin: left;
+        min-width: calc((var(--contentWidth)/0.8));
+        justify-content:space-around;
+    }
+
+    #page-nav {
+      height:calc(0.8 * var(--navHeight));
+    }
+
+    #nav-pages {
+      bottom: calc(0.8 * var(--navHeight));
+    }
+
+    .nav-button-wrapper {
+      height:calc(0.8 * 75px);
+    }
+}
+
+@media only screen and (min-width: 600px) and (min-height:600px) {
+    .nav-button-wrapper > button:first-child {
+        position: absolute;
+        left:10px;
+    }
+
+    .nav-button-wrapper > button:last-child {
+        position: absolute;
+        right:10px;
+    }
+}
+
+.nav-button-wrapper button {
+    cursor:pointer;
+    outline:none;
+    color:var(--contrast-text);
+    background:none;
+    border:none;
+    margin:2px;
+}
+
+.nav-button-wrapper button:focus {
+  outline: 1px solid white;
+}
+
+.nav-button-tip-wrapper {
+  display:flex;
+  justify-content:center;
+}
+
+.nav-button-wrapper button[disabled] {
+    color: var(--contrast-text-dimmed);
+    cursor:not-allowed;
+}
+
+.nav-position {
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background:var(--content-background);
+    font-size: 1em;
+    border-radius:50px;
+    height:45px;
+}
+
+#nav-page-input {
+    width:20px; /*this is going to need to be adjusted in JS*/
+    font-size: 1em;
+    border:none;
+    text-align:right;
+}
+
+#nav-total-pages {
+    padding-right:5px;
+}
+
+#nav-time-elapsed {
+    text-align:right;
+}
+
+@media only screen and (max-width: 600px) {
+    .nav-position > input { display:none }
+    .nav-position > span { display:none }
+    #nav-time-elapsed { 
+      display:inline-block;
+      text-align:center;
+    }
+}
+
+.nav-position > button {
+    cursor:pointer;
+    outline:none;
+    margin:5px;
+    padding:5px;
+    height:35px;
+    border-radius:50px;
+    border:none;
+    color:var(--content-text);
+    background:var(--content-background);
+    transition: background 0.5s ease;
+}
+
+.nav-position > button:hover {
+    color:var(--contrast-text);
+    background:var(--contrast-background);
+    transition: background 0.5s ease;
+}
+
+.nav-position > button.nav-toggled {
+    color:var(--contrast-text);
+    background:var(--contrast-background);
+    transition: background 0.5s ease;
+}
+
+#nav-total-pages {
+    font-size: 1em;
+    text-align:left;
+    min-width:20px;
+    margin:3px;
+}
+
+.currentpage {
+  background:var(--max-contrast-background) !important;
+  color: var(--contrast-text);
+}
+
+[data-pindrop-mode="unplaced"] #page-nav * { 
+  cursor:unset;
+}
+
+[data-pindrop-mode="unplaced"] #page-nav { 
+  cursor: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY2xhc3M9ImZlYXRoZXIgZmVhdGhlci1tYXAtcGluIj48cGF0aCBkPSJNMjEgMTBjMCA3LTkgMTMtOSAxM3MtOS02LTktMTNhOSA5IDAgMCAxIDE4IDB6Ij48L3BhdGg+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMCIgcj0iMyI+PC9jaXJjbGU+PC9zdmc+) 16 16, pointer !important;
+}

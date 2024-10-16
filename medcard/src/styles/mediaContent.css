@@ -1,0 +1,215 @@
+#media-view {
+    position:relative;
+    display: grid;
+    justify-content:center;
+    width:100%;
+}
+
+#media-view:not([data-media-is-video]) {
+    height:100%;
+    align-items:center;
+    grid-template-columns:1fr;
+    --wave-margin:100px;
+    --wave-bars:128px;
+    --wave-tab-offset:140px;
+}
+
+#media-view[data-media-is-video] {
+    grid-template-rows: minmax(50vh, 1fr) var(--wave-total);
+    grid-template-columns:1fr;
+    --wave-margin:50px;
+    --wave-bars:64px;
+    --wave-tab-offset:80px;
+    --wave-total:calc(var(--wave-margin) * 2 + var(--wave-bars))
+}
+
+@media only screen and (max-height: 400px) {
+    #media-view[data-media-is-video] {
+        --wave-margin:25px;
+        --wave-bars:32px;
+    }
+} 
+
+#media-view-video {
+    position:relative;
+    background:black;
+    height:100%;
+    display: grid;
+    align-items:center;
+    justify-content:center;
+}
+
+#media-view-video-wrapper {
+  width:fit-content;
+  position:relative;
+}
+
+#media-view-video-overlay {
+  /* prevents mobile from taking over touch actions used for resize */
+  touch-action: none; 
+  position:absolute;
+  --spotlightHandle:20px;
+  grid-template-areas: "header header header header header"
+    "leftcol over over right rightcol"
+    "leftcol left spot right rightcol"
+    "leftcol under under under rightcol"
+    "footer footer footer footer footer";
+  grid-template-columns: calc(var(--spotlightScale) * var(--spotlightX)) var(--spotlightHandle) calc(var(--spotlightScale) * var(--spotlightWidth) - (2 * var(--spotlightHandle))) var(--spotlightHandle) 1fr;
+  grid-template-rows: calc(var(--spotlightScale) * var(--spotlightY)) var(--spotlightHandle) calc(var(--spotlightScale) * var(--spotlightHeight) - (2 * var(--spotlightHandle))) var(--spotlightHandle) 1fr;
+  display: grid;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+#media-view-video-overlay div {
+  background: black
+}
+
+#media-view-video-overlay:not([data-media-selection-mutable]) {
+  pointer-events:none;
+}
+
+#media-view-video-overlay-spotlight { grid-area:spot; }
+#media-view-video-overlay-header {grid-area:header}
+#media-view-video-overlay-left {grid-area:leftcol}
+#media-view-video-overlay-overlight { grid-area:over }
+#media-view-video-overlay-leftlight { grid-area:left; }
+#media-view-video-overlay-right { grid-area:rightcol; }
+#media-view-video-overlay-footer { grid-area:footer; }
+#media-view-video-overlay-rightlight {
+  grid-area:right;
+  z-index:1;
+}
+
+#media-view-video-overlay-underlight {
+  grid-area:under;
+  z-index:1;
+}
+
+#media-view-video-overlay-header,
+#media-view-video-overlay-left,
+#media-view-video-overlay-right,
+#media-view-video-overlay-footer {
+  opacity:0.3;
+}
+
+#media-view-video-overlay-spotlight,
+#media-view-video-overlay-overlight,
+#media-view-video-overlay-underlight,
+#media-view-video-overlay-rightlight,
+#media-view-video-overlay-leftlight {
+  opacity:0
+}
+
+[data-media-selection-mutable] > #media-view-video-overlay-spotlight,
+[data-media-selection-mutable] > #media-view-video-overlay-overlight,
+[data-media-selection-mutable] > #media-view-video-overlay-leftlight {
+  cursor:grab;
+}
+
+[data-media-selection-mutable] > #media-view-video-overlay-rightlight {
+  cursor:ew-resize;
+}
+
+[data-media-selection-mutable] > #media-view-video-overlay-underlight {
+  cursor:ns-resize;
+}
+
+[data-media-selection-mutable] > #media-view-video-overlay-rightlight,
+[data-media-selection-mutable] > #media-view-video-overlay-underlight {
+  opacity:0.1;
+}
+
+
+#media-view video {
+    max-width:100%;
+    max-height:calc(100vh - var(--navHeight) - var(--wave-total)) ;
+    cursor:crosshair;
+}
+
+
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+    #media-view video {
+        max-height:calc(100vh - (var(--navHeight) * .8) - var(--wave-total)) ;
+    }
+}
+
+#waveform {
+  width: 100%;
+  background: var(--content-background)
+}
+
+html[data-scrollbars="hidden"] wave {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width:none;
+}
+
+html[data-scrollbars="hidden"] wave::-webkit-scrollbar { display: none; }
+
+.wavesurfer-region::before{
+  background:var(--user_solid);
+  content:"";
+  top:0px;
+  right:0px;
+  left:0px;
+  bottom:0px;
+  position:absolute;
+  opacity:0.2;
+  transition: opacity 0.25s ease;
+  cursor:pointer;
+}
+
+#waveform[data-annotations-focused] .wavesurfer-region::before {
+  opacity: 0.1;
+}
+
+
+#waveform[data-annotations-focused] .wavesurfer-region[data-focused]::before {
+  opacity: 0.3;
+}
+
+.wavesurfer-region[data-id="active-selection"] {
+  opacity: 0.3;
+}
+
+[data-annotations-hidden] .wavesurfer-region:not([data-id="active-selection"]) {
+  display:none;
+}
+
+.wavesurfer-region::after {
+  background:var(--user_solid);
+  opacity:0.5;
+  content:"";
+  height:5px;
+  right:0px;
+  left:0px;
+  position:absolute;
+  top:calc(var(--wave-tab-offset) + (10px * var(--gutter_level)));
+  max-width:100%;
+  cursor:pointer; 
+}
+
+.wavesurfer-handle {
+  width:10px !important;
+}
+
+#waveform {
+    overflow:hidden;
+}
+
+
+wave {
+  margin-top:var(--wave-margin);
+  padding-bottom:var(--wave-margin);
+}
+
+wave wave,
+wave canvas,
+wave region {
+  margin:0px;
+  padding:0px;
+  max-height:var(--wave-bars);
+  height:var(--wave-bars)
+}

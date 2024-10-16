@@ -1,0 +1,213 @@
+#content-container {
+  --dragOffset-1: 0px;
+  --dragOffset-2: 0px;
+  --sidepanelWidth: 100%; 
+  --widget-1-width: calc(100vw - var(--widget-control-width));
+  /* 1px to compensate for border */
+  --widget-2-width: calc(100vw - var(--widget-control-width) + 1px);
+  --widget-control-width:40px;
+  --transitionSizing: height 0.5s ease, max-width 0.5s ease, width 0.5s ease,  left 0.5s ease, right 0.5s ease, padding 0.5s ease;
+}
+
+#sidepanel {
+    display:flex;
+    position:fixed;
+    right: 0px;
+    top:0px;
+    bottom:0px;
+    box-shadow: -2px 0 4px 0 rgba(0,0,0,.2);
+    background:var(--content-background);
+    z-index:6;
+    /* ↓ for mobile, override below */
+    left: calc(
+      (100% + 5px) * (1 - max(var(--chatVisible), var(--listingVisible)))
+    );
+    width: calc(
+      max(
+        var(--widget-control-width),
+        var(--sidepanelWidth) * min(1,var(--chatVisible) + var(--listingVisible))
+      )
+    );
+    transition: var(--transitionSizing)
+}
+
+.panel-handle {
+  opacity:0;
+  position:absolute;
+  left:-10px;
+  width: 10px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  cursor:ew-resize;
+  font-size:16pt;
+  user-select:none;
+  touch-action:none;
+}
+
+.panel-handle > div {
+  position:relative;
+  right:10px
+}
+
+.panel-handle:hover {
+  opacity:1;
+}
+
+#panel-handle-2 {
+  left: calc((var(--chatVisible) * var(--widget-1-width)) - 10px);
+}
+
+/* workaround for chrome bug with resizing the chat panel itself */
+.panel-widget-1, .panel-widget-2 {
+    position:absolute;
+    display:inline-flex;
+    height:100%;
+    overflow-y:auto;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    transition: var(--transitionSizing)
+}
+
+.panel-widget-1 {
+    width: var(--widget-1-width);
+    min-width: var(--widget-1-width);
+}
+
+.panel-widget-2 {
+    left: calc(
+      var(--chatVisible) * (var(--widget-1-width) + var(--widget-control-width)) 
+      + (var(--listingVisible) * -1px) /* 1px to compensate for border */
+    );
+    width: var(--widget-2-width);
+    min-width: var(--widget-2-width);
+    border-left:1px solid #adadad;
+    background:var(--content-background);
+}
+
+html[data-scrollbars="hidden"] .panel-widget-2,
+html[data-scrollbars="hidden"] .panel-widget-1 {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/*chrome, safari, opera*/
+html[data-scrollbars="hidden"] .panel-widget-2::-webkit-scrollbar,
+html[data-scrollbars="hidden"] .panel-widget-1::-webkit-scrollbar {
+  display: none;
+}
+
+.panel-widget-controls {
+  box-sizing:border-box;
+  height:100%;
+  position:fixed;
+  right:calc(-1 * (1 - min(1,var(--chatVisible) + var(--listingVisible))) * var(--widget-control-width));
+  background:white;
+  width:var(--widget-control-width); 
+  border-left:1px solid #adadad;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+  transition: right .25s ease;
+}
+
+.panel-widget-controls > button {
+    border:none;
+    outline:none;
+    font-size:24px;
+    height:24px;
+    text-align:center;
+    vertical-align:middle;
+    background:transparent;
+    cursor:pointer;
+}
+
+.panel-widget-controls > button::after {
+  position:absolute;
+  right: -8px;
+  display:inline-block;
+  border-left: 8px solid black;
+  content:"";
+  height:24px;
+  border-radius:24px;
+  transition: right .5s;
+}
+
+.panel-widget-controls > button[data-active]::after {
+  right: -4px;
+  transition: right .5s;
+}
+
+.panel-widget-controls > hr {
+  border: none;
+  border-top: 1px solid #dedede;
+  width:24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .panel-widget-controls .room-icon {
+    transform: scale(0.7)
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .panel-widget-controls {
+    padding-top:10px;
+  }
+    #content-container {
+      --widget-control-width:80px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    .panel-widget-controls {
+      right: 0px;
+    }
+
+    .panel-widget-2 {
+      left: calc(var(--chatVisible) * var(--widget-1-width));
+    }
+
+    #sidepanel {
+      left:unset;
+    }
+
+    #content-container {
+        --sidepanelWidth: calc(
+            (var(--widget-1-width) * var(--chatVisible))
+            + (var(--widget-2-width) * var(--listingVisible))
+            + (var(--widget-control-width))
+        );
+        --widget-1-width:calc(350px + var(--dragOffset-1));
+        --widget-2-width:calc(350px + var(--dragOffset-2));
+    }
+}
+
+/* standard DPI */
+@media only screen and (min-width: 1280px) {
+    #content-container {
+        --widget-1-width:calc(400px + var(--dragOffset-1));
+        --widget-2-width:calc(400px + var(--dragOffset-2));
+    }
+
+    .panel-widget-1 {
+        padding:0px;
+        border: none;
+    }
+}
+
+/* high DPI laptop */
+@media only screen and (min-width: 1400px) {
+}
+    
+@media only screen and (min-width: 1800px) {
+    #content-container {
+        --widget-1-width:calc(400px + var(--dragOffset-1));
+        --widget-2-width:calc(500px + var(--dragOffset-2));
+    }
+}

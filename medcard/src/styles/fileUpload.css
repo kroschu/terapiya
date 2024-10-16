@@ -1,0 +1,170 @@
+#file-upload {
+  max-width:calc(min(800px, 100% - (2 * var(--margin-unit))))  ;
+  width:100%;
+  margin:var(--margin-unit);
+  padding-top:calc(.5 * var(--margin-unit));
+  background:var(--content-background);
+  height:fit-content;
+  border: 1px solid var(--content-border);
+  padding: var(--margin-unit);
+  padding-top: calc(.5 * var(--margin-unit));
+}
+
+#file-upload-form {
+    display:grid;
+    grid-template-columns: 180px 1fr;
+    margin-top: calc(.75 * var(--margin-unit));
+    align-items:center;
+}
+
+#file-upload-form label {
+    grid-column: 1 / 2 ;
+}
+
+ #file-upload-form input, #file-upload-form textarea {
+    grid-column: 2 / 3 ;
+    margin-bottom:.5em;
+}
+
+#file-upload-form details {
+    grid-column: 1 / 3 ;
+    margin-bottom:.5em;
+}
+
+#file-upload-chooser input {
+  display: none;
+}
+
+#file-upload-chooser {
+  display:grid;
+  align-items:center;
+  justify-items:right;
+  grid-template-columns:auto 1fr ;
+  min-height:2em;
+}
+
+#file-upload-chooser span {
+  font-weight:bold;
+}
+
+#file-upload-chooser .small-icon {
+}
+
+.file-upload-details-wrapper {
+  padding-top:.5em;
+  display:grid;
+  grid-template-columns: 180px 1fr;
+}
+
+#file-upload-form > textarea {
+    resize: none;
+    min-height:50px;
+}
+
+#file-upload-form-submit {
+    grid-column: 1 / 2 ;
+}
+
+#file-upload-form-progress {
+    text-align:right;
+    grid-column: 2 / 3 ;
+}
+
+.file-upload-form-detail {
+    color:var(--content-text-dimmed);
+    grid-column: 2 / 3 ;
+    font-size:10pt;
+    position:relative;
+    top:-8px;
+}
+
+#file-upload-form-progress progress {
+  width: 100%;
+  height: 80%;
+}
+
+#pdf-upload-preview canvas {
+  width: var(--pdfWidthPx);
+  height: var(--pdfHeightPx);
+}
+
+#pdf-upload-preview {
+  position:relative;
+}
+
+#pdf-upload-preview-outer-wrapper {
+  display:flex;
+  position:relative;
+  justify-content:center;
+  padding:10px;
+  background: var(--contrast-background);
+  max-height:50vh;
+  overflow:auto;
+}
+
+#pdf-upload-preview-wrapper {
+  position:relative;
+}
+
+#generic-upload-preview {
+  display:flex;
+  align-items:center;
+}
+
+#media-upload-preview {
+  padding:10px;
+  position:relative;
+}
+
+#image-upload-preview img,
+#media-upload-preview video {
+  width:100%;
+}
+
+#pdf-upload-preview {
+  overflow:hidden;
+}
+
+#media-upload-preview-controls button, #pdf-upload-preview-controls button {
+  cursor: pointer;
+  display:flex;
+  align-content:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.6);
+  border: 2px solid var(--content-text);
+  border-radius:30px;
+  margin:0px; 
+  padding:6px;
+  backdrop-filter: blur(6px);
+}
+
+#pdf-upload-preview-controls, #media-upload-preview-controls {
+  display:flex;
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  right:15px;
+  justify-content: space-between;
+  z-index:3;
+}
+
+#generic-upload-preview svg {
+  padding-right: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #file-upload-form,
+    .file-upload-details-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    #file-upload-form details, 
+    #file-upload-form-progress, 
+    .file-upload-form-detail,
+    #file-upload-form input, 
+    #file-upload-form textarea { 
+        grid-column: 1 / 2;
+        min-width: 0px; /* helps prevent overflow on very narrow viewports */
+    }
+} 

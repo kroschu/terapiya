@@ -1,0 +1,235 @@
+#select-sort {
+    user-select:none;
+    display:flex;
+    align-items:center;
+    padding: calc(.5 * var(--margin-unit));
+    background: var(--content-background);
+    border: 1px solid var(--content-border);
+}
+
+#room-filters {
+    border: 1px solid var(--content-border);
+    background: var(--content-background);
+    margin-top: var(--margin-unit);
+    padding: calc(.5 * var(--margin-unit));
+}
+
+.room-filter-listing:first-child {
+    padding-left:calc(.5 * var(--margin-unit));
+}
+
+.room-filter-listing {
+    position:relative;
+    font-weight: bold;
+}
+
+.room-filter-content .small-icon {
+    vertical-align: sub;
+    padding-right:5px;
+}
+
+.room-filter-content::after {
+    content: ","
+}
+
+.room-filter-listing > .small-icon-badge {
+  visibility:hidden;
+  cursor: pointer;
+  padding:0px;
+}
+
+.room-filter-listing > .small-icon-badge > svg {
+  height:10px;
+  width:10px;
+  stroke-width:4px;
+}
+
+.room-filter-listing:hover > .small-icon-badge {
+  visibility:visible;
+}
+
+#select-sort > button {
+    margin-left: 15px;
+}
+
+#select-sort > .small-icon {
+    margin-left: 0em;
+}
+
+.room-listing-entry {
+    margin-top: var(--margin-unit);
+    border: 1px var(--content-border) solid;
+    background: var(--content-background);
+}
+
+.invite-buttons button {
+  margin-right:10px;
+}
+
+.room-listing-avatar {
+  width:100%;
+  background:var(--high-contrast-background);
+  display:flex;
+  justify-content: center;
+  overflow:hidden;
+  position:relative;
+}
+
+.room-listing-avatar-img {
+  object-fit:cover;
+  max-width:100%;
+  opacity: 0;
+  transition: opacity .25s ease;
+  z-index:1;
+}
+
+.room-listing-avatar-canvas {
+  object-fit:cover;
+  position:absolute;
+  max-width:100%;
+}
+
+.room-listing-avatar-img[data-avatar-loaded] {
+  opacity: 1;
+}
+
+.room-listing-body {
+    padding: var(--margin-unit);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 40px;
+}
+
+.room-listing-body[data-room-entry-buttons-visible] > div {
+    grid-column: 1 / 2;
+}
+
+.room-listing-entry-buttons {
+    grid-column: 1 / 2 !important;
+}
+
+.invite-heading, .room-listing-heading {
+    grid-column: 1 / 2 !important;
+    margin-bottom:var(--margin-unit);
+    display:flex;
+    align-items:center;
+}
+
+.room-listing-heading a {
+  color:var(--content-text);
+}
+
+.room-listing-data {
+    padding-bottom:5px;
+}
+
+.room-listing-data-row {
+    display: flex;
+    padding-bottom:5px;
+    flex-wrap:wrap;
+    gap:5px;
+    align-items: center;
+}
+
+.room-listing-data-row .room-data-icon { 
+  display:grid;
+  align-items:center;
+  margin-right:10px;
+}
+
+.room-listing-data .invite-pill { 
+  opacity:.5; 
+  display:flex; /* necessary for alignment with other pills */
+}
+
+.room-listing-heading > a {
+  font-size:16pt;
+  font-weight:bold;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  cursor: pointer;
+}
+
+.room-toggle-members {
+  border-radius:5px;
+  margin-right:5px;
+  border:none;
+  background:none;
+  font-size:12pt;
+  cursor:pointer;
+  padding:5px;
+  white-space: nowrap;
+  color:var(--content-text);
+  transition:background .5s ease;
+}
+
+.room-toggle-members:hover {
+  background:var(--low-contrast-background);
+  transition:background .5s ease;
+}
+
+.room-listing-entry .fav-star {
+    height:24px;
+    padding-right:5px;
+}
+
+.room-listing-entry .fav-star svg {
+    transform: scale(1);
+}
+
+.room-listing-entry-buttons  {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 50 !important;
+    padding:5px;
+    margin-left:5px;
+}
+
+.room-listing-body[data-room-entry-buttons-visible] .room-listing-entry-buttons {
+    background: var(--input-background);
+    border-radius: 15px;
+}
+
+.room-listing-entry-buttons > button {
+    padding: 0px;
+    margin: 0px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.room-listing-avatar:not([data-has-avatar]) .room-annotation-data {
+  position:relative;
+  width:100%;
+}
+
+.room-listing-avatar[data-has-avatar] .room-annotation-data {
+  position:absolute;
+  left:0px;
+  top:0px;
+  z-index:1;
+}
+
+.room-annotation-data > span {
+  margin:10px;
+}
+
+.room-annotation-data > span {
+  display:grid;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+  padding:10px;
+  width:20px;
+  border-radius:30px;
+  grid-template-columns: 20px 0px;
+  cursor:pointer;
+  transition:background .25s ease;
+}
+
+.room-annotation-data > span:hover {
+  background: rgba(255,255,255,1);
+}
+
+
+#settings-loading {
+  animation: pulse-opacity 2s infinite; 
+  animation-timing-function:ease;
+}

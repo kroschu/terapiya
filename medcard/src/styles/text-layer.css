@@ -1,0 +1,58 @@
+.text-layer { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    line-height:1;
+    opacity: 0.2;
+    width: calc(var(--pdfWidthPx) / var(--pdfFitRatio)) ;
+    height: calc(var(--pdfHeightPx) / var(--pdfFitRatio));
+    pointer-events:none;
+    user-select:none;
+    transform-origin : top left;
+    transform: scale(var(--pdfFitRatio)) translate(-4px,-4px) !important;
+    /* a slight skootch here to make up for span padding */
+}
+
+[data-touches="2"] .text-layer,
+[data-pindrop-mode] .text-layer { display:none; }
+
+[data-touches="2"] .text-layer > span,
+[data-touches="1"] .text-layer > span {
+    touch-action:none;
+  }
+
+.text-layer > span {
+    color:transparent;
+    position: absolute;
+    white-space: pre;
+    cursor: text;
+    pointer-events:auto;
+    transform-origin: 0% 0%;
+    user-select:text;
+    /* a little padding seems to help with text selection */
+    padding:4px; 
+}
+
+.text-layer > br {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+  user-select:text;
+}
+
+.text-layer mark {
+    color:transparent;
+    background:var(--max-contrast-background);
+    padding:2px;
+    position:relative;
+}
+
+.text-layer span::selection {
+    color:transparent;
+    background:var(--selectColor);
+}

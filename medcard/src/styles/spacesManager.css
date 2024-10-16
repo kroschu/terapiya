@@ -1,0 +1,159 @@
+#spaces-manager {
+  padding-top:calc(.5 * var(--margin-unit));
+  padding-bottom:var(--margin-unit);
+  padding-left:var(--margin-unit);
+  padding-right:var(--margin-unit);
+  background: var(--content-background);
+  border: 1px solid var(--content-border);
+  height:fit-content;
+}
+
+#spaces-list {
+  margin-left: 16px;
+}
+
+#spaces-manager h1 {
+  margin:0px
+}
+
+#add-space {
+  display:flex;
+  align-items:center;
+  background:none;
+  border:none;
+  padding:0px;
+  border-radius:15px;
+  font-size:14pt;
+  font-weight:bold;
+  color: var(--content-dimmed-element);
+  margin-top:5px;
+  margin-left:16px;
+  cursor:pointer;
+  transition: color .5s ease;
+}
+
+#add-space:hover {
+  color: var(--content-text);
+}
+
+.space-listing h3 {
+  cursor:pointer;
+  margin:5px 0px 10px 0px;
+  display:inline-flex;
+  align-content:center;
+}
+
+.space-listing h3 button {
+  visibility:hidden;
+  background:none;
+  border:none;
+  cursor: pointer;
+}
+.space-listing h3 button[data-narrow-view],
+.space-listing h3:hover button {
+  visibility: visible;
+}
+
+.space-listing h3 svg {
+  height:20px;
+}
+
+.space-listing-actions {
+  position:relative;
+  top:-7px;
+}
+
+.space-listing-actions button {
+  margin-left:10px;
+}
+
+.space-listing-children .room-icon {
+  margin-left:10px;
+  margin-bottom:10px;
+}
+
+.space-listing-more {
+  margin-left:10px;
+  background:var(--content-background);
+  display:inline-block;
+  border-radius:5px;
+  font-size:14pt;
+  font-weight:bold;
+  height:50px;
+  color: var(--content-dimmed-element);
+  cursor:pointer;
+  transition: color .5s ease;
+}
+
+.space-listing-more:hover {
+  color:var(--content-text);
+}
+
+#manage-discussion-select-view {
+  margin-top:20px;
+}
+
+#current-discussions-list,
+#available-discussions-list {
+  padding-top:20px;
+  overflow:auto;
+}
+
+#manage-discussion-list-wrapper {
+  transition: height .25s ease;
+  overflow:auto;
+  max-height:60vh;
+}
+
+
+html[data-scrollbars="hidden"] #current-discussions-list,
+html[data-scrollbars="hidden"] #available-discussions-list {
+  scrollbar-width: none;
+}
+
+html[data-scrollbars="hidden"] #current-discussions-list::-webkit-scrollbar,
+html[data-scrollbars="hidden"] #available-discussions-list::-webkit-scrollbar {
+  display: none;
+}
+
+.discussion-listing svg {
+  height:1.2em;
+  vertical-align:bottom;
+}
+
+.discussion-listing {
+  display: grid;
+  height:28px;
+  grid-template-columns: 2em 1fr;
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  text-align:left;
+}
+
+.discussion-listing > span {
+  padding-bottom:10px;
+  white-space:pre;
+  overflow-x:auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width:none;
+}
+
+.discussion-listing > span::-webkit-scrollbar { display: none; }
+
+.discussion-listing[data-change-pending] {
+  color:var(--content-text-dimmed);
+}
+
+.discussion-listing:hover {
+  left:5px
+}
+
+@media only screen and (max-width: 600px) {
+    .space-listing h3 {
+      display:grid;
+      grid-template-columns: 1fr auto;
+    }
+} 

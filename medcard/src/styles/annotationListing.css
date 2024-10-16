@@ -1,0 +1,244 @@
+#annotation-panel {
+    position:relative;
+    flex-direction: column;
+}
+
+#annotation-panel .empty-marker { padding:10px }
+
+#annotation-entries-wrapper {
+    overflow-y:scroll;
+    padding-bottom:40px;
+}
+
+html[data-scrollbars="hidden"] #annotation-entries-wrapper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+html[data-scrollbars="hidden"] #annotation-entries-wrapper::-webkit-scrollbar { display: none; }
+
+#annotation-controls {
+    user-select:none;
+    display:flex;
+    align-items:center;
+    margin-top: .5em;
+    padding-bottom: .5em;
+    padding-left: .5em;
+    border-bottom: 1px solid var(--content-border);
+}
+
+#annotation-controls button {
+    margin-left: 1em;
+}
+
+#annotation-controls button:first-child {
+    margin-left: 0em;
+}
+
+#annotation-panel .annotation-listing-entry {
+    cursor: pointer;
+    position:relative;
+    width:calc(100% - 20px);
+    padding:20px 10px 20px 10px;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    flex-wrap:wrap;
+    transition: background-color 0.5s ease;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  #annotation-panel .annotation-listing-entry {
+      width:calc(100% - 50px);
+      padding:20px 25px 20px 25px;
+
+  } 
+}
+
+#annotation-panel .annotation-listing-divider {
+    border-bottom: 1px solid var(--content-border);
+    margin: 20px 60px 20px 60px;
+    text-align:center;
+    position:relative;
+}
+
+#annotation-panel .annotation-listing-divider > span {
+    white-space:pre;
+    max-width:100%;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow:ellipsis;
+    color: var(--content-text-dimmed);
+    font-size:10pt;
+    background:var(--content-background);
+    position:relative;
+    padding:0px 10px 0px 10px;
+    top:.75em;
+}
+
+#annotation-panel .annotation-listing-entry[data-annotation-entry-typing] {
+    animation: pulse-color 2s infinite; 
+    animation-timing-function:ease;
+}
+
+#annotation-panel .annotation-listing-entry:hover {
+    background: var(--user_ultralight);
+    transition: background-color 0.5s ease;
+}
+
+#annotation-panel .annotation-listing-entry[data-annotation-entry-focused] {
+    background: var(--user_ultralight);
+}
+
+.annotation-listing-entry .preview-quote,
+.annotation-listing-entry .preview-pin,
+.annotation-listing-entry .preview-media-fragment {
+  width:100%;
+}
+
+.annotation-listing-pending {
+  width:100%;
+  padding-top:10px;
+  padding-left:5px;
+  font-size:10pt;
+  color:var(--content-secondary-text);
+}
+
+.annotation-listing-comment, .annotation-listing-comment-unread {
+    width:calc(100%);
+    padding:0px 10px 0px 10px;
+    border: 2px solid var(--user_light);
+    margin-bottom:10px;
+    margin-top:10px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+    background:var(--content-background);
+}
+
+.annotation-listing-comment a, .annotation-listing-comment-unread a {
+  color:var(--content-text);
+}
+
+.annotation-listing-comment a:hover, .annotation-listing-comment-unread a:hover {
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 0.125em;
+}
+
+.annotation-listing-comment-unread { border: 5px solid var(--user_light); }
+
+.annotation-listing-info {
+  display: flex;
+  justify-content: space-between;
+  align-content:center;
+  width:100%;
+}
+
+.annotation-listing-features > svg {
+  height:24px;
+  width:24px;
+  padding-right:5px;
+}
+
+.annotation-listing-features {
+  height:24px;
+  padding-left:5px;
+  color:var(--content-secondary-text);
+}
+
+.annotation-listing-creator::before {
+  content: "";
+  position: absolute;
+  bottom:21px;
+  left:-25px;
+  border-right: 10px solid var(--user_light);
+  border-top: 10px solid var(--user_light);
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.annotation-listing-creator::after {
+  content: "";
+  position: absolute;
+  bottom:26px;
+  left:-25px;
+  border-right: 9px solid white;
+  border-top: 9px solid white;
+  border-left: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+
+.annotation-listing-comment-unread + .annotation-listing-info .annotation-listing-creator::before {
+  bottom:13px;
+  left:-35px;
+  border-right: 15px solid var(--user_light);
+  border-top: 15px solid var(--user_light);
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.annotation-listing-comment-unread + .annotation-listing-info .annotation-listing-creator::after {
+  bottom:27px;
+  left:-28px;
+}
+
+.annotation-listing-comment pre, .annotation-listing-comment-unread pre{
+  overflow-y: scroll;
+  max-width: calc(var(--widget-2-width) - 75px);
+  text-overflow:ellipsis;
+}
+
+html[data-scrollbars="hidden"] .annotation-listing-comment-unread pre,
+html[data-scrollbars="hidden"] .annotation-listing-comment pre {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width:none;
+}
+
+html[data-scrollbars="hidden"] .annotation-listing-comment pre::-webkit-scrollbar,
+html[data-scrollbars="hidden"] .annotation-listing-comment-unread pre::-webkit-scrollbar { 
+  display: none; 
+}
+
+.annotation-listing-creator {
+    position:relative;
+    font-size:10pt;
+    padding-right:10px;
+    user-select: none;
+}
+
+.annotation-listing-fallback {
+  color:var(--content-secondary-text);
+  text-align:center;
+}
+
+#annotation-panel-button-wrapper {
+  position:absolute;
+  bottom:0px;
+  width:100%;
+}
+
+#annotation-panel-button-wrapper .search-bar {
+  height:36px;
+  border: 2px solid black;
+  background: var(--content-background);
+}
+
+#annotation-panel-button-wrapper[data-mode="search"] .search-bar > input {
+  opacity:1;
+  width:100%;
+  height:100%;
+  margin:0px;
+  padding-top:0px;
+  padding-bottom:0px;
+  outline:none;
+}
+
+#annotation-panel-button-wrapper[data-mode="navigation"] .search-bar > input {
+  background-color:var(--content-background);
+}
+
+#annotation-panel-button-wrapper .search-bar > .clear-icon,
+#annotation-panel-button-wrapper .search-bar > .search-icon {
+  right:6px;
+}

@@ -1,0 +1,172 @@
+#room-settings-form {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
+
+#room-settings-form-wrapper {
+  transition: height .25s ease;
+}
+
+.room-settings-role-list h5 {
+  margin-top:0px;
+  margin-bottom:5px;
+}
+
+.room-settings-role-list {
+  grid-column: 1/3;
+  margin-bottom:20px;
+}
+
+#room-settings-select-view {
+  padding-bottom:20px;
+}
+
+#room-settings-form label {
+  margin:5px;
+  margin-left:0px;
+}
+
+#room-settings-form textarea{
+  resize:none;
+}
+
+#room-settings-form #select-avatar-wrapper {
+  position:relative;
+  grid-column: 1 / 3;
+}
+
+.room-settings-info {
+  grid-column: 2/3;
+  padding-top:5px;
+  font-size:10pt;
+}
+
+.room-settings-role-empty {
+  font-size: 12pt;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.room-settings-role-listing {
+  background:unset;
+  position: relative;
+  border:none;
+  font-size: 12pt;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns: 30px 1fr;
+  align-items:center;
+  justify-items:left;
+  padding:0px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.room-settings-role-listing:not([data-role-toggleable]) .small-icon {
+  color:var(--content-text-dimmed);
+}
+
+.room-settings-role-user {
+  text-align:left;
+  display:inline-block;
+  overflow:hidden;
+  width:100%;
+  text-overflow:ellipsis;
+}
+
+.room-settings-role-change-info {
+  grid-column: 2/3;
+  color:var(--content-text-dimmed);
+  font-size:10pt;
+  text-align:left;
+}
+
+.room-settings-role-listing:hover {
+  left:5px;
+}
+
+.room-settings-add-role {
+  position: relative;
+  display:flex;
+  align-items:center;
+}
+
+.room-settings-add-role-input-wrapper { 
+  position: relative;
+  width:calc(100% - 40px);
+}
+
+.room-settings-add-role-input-wrapper #popup-menu { 
+  border:1px solid #adadad;
+}
+
+.room-settings-add-role input { 
+  width:calc(100% - 14px);
+}
+
+.room-settings-add-role .small-icon {
+  margin-right:10px;
+}
+
+.room-settings-link-group {
+  grid-column: 2/3;
+  display:grid;
+  grid-template-columns: 1fr 31px;
+  align-items:center;
+}
+
+#room-settings-join-link {
+  font-size:10pt;
+  overflow-x:auto;
+  user-select:all;
+  background:var(--input-background);
+  padding:7px;
+  margin:0px;
+}
+
+html[data-scrollbars="hidden"] #room-settings-join-link {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width:none;
+}
+
+html[data-scrollbars="hidden"] #room-settings-join-link::-webkit-scrollbar { display: none; }
+
+.room-settings-info {
+  padding-bottom:15px;
+}
+
+#room-settings-submit-wrapper {
+  grid-column: 1/3;
+}
+
+#room-settings-submit-wrapper button:not(:last-child) {
+  margin-right:10px;
+  margin-bottom:10px;
+}
+
+#room-settings-progress {
+    grid-column: 1/3 ;
+    padding-top: 10px;
+    animation: pulse-opacity 2s infinite; 
+    animation-timing-function:ease;
+}
+
+#room-settings-progress progress {
+    width:100%;
+  }
+
+@media only screen and (max-width: 600px) {
+  #room-settings-form {
+    grid-template-columns: 1fr;
+  }
+
+  .room-settings-info,
+  #room-settings-submit-wrapper,
+  #room-settings-avatar-wrapper,
+  #room-settings-progress,
+  #room-settings-progress,
+  .room-settings-link-group {
+    grid-column: 1/2;
+  }
+}

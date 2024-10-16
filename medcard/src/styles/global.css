@@ -1,0 +1,202 @@
+@import url('https://rsms.me/inter/inter.css');
+
+html[data-scrollbars="hidden"] {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width:none;
+}
+
+html[data-scrollbars="hidden"]::-webkit-scrollbar { display: none; }
+
+code { font-family: 'IBM Plex Mono', monospace; }
+
+pre { font-family: 'IBM Plex Mono', monospace; }
+
+* { font-family: 'Inter', sans-serif; }
+
+@supports (font-variation-settings: normal) {
+  * { font-family: 'Inter var', sans-serif; }
+}
+
+.katex * { font-family: unset }
+
+body { 
+  margin:0px; 
+  height:100vh;
+}
+
+body[data-modal-visible] { 
+  overflow:hidden;
+}
+
+@keyframes reverse-pulse-color{
+  0% { color: white }
+  50% { color: black }
+  100% { color: white}
+}
+
+@keyframes pulse-opacity {
+  0% { opacity:1 }
+  50% { opacity:.2 }
+  100% { opacity:1 }
+}
+
+@keyframes pulse-scale {
+  0% { transform: scale(1) }
+  50% { transform: scale(1.1) }
+  100% { transform: scale(1) }
+}
+
+@keyframes delayed-fade {
+  0% { opacity:0 }
+  50% { opacity:0 }
+  100% { opacity:1 }
+}
+
+@keyframes pulse-half-opacity {
+  0% { opacity:.5 }
+  50% { opacity:.2 }
+  100% { opacity:.5 }
+}
+
+@keyframes pulse-color {
+  0% { background-color: white; }
+  50% { background-color: var(--user_light); }
+  100% { background-color: white; }
+}
+
+.select-view {
+  display:flex;
+  gap:10px;
+  overflow-y:auto;
+}
+
+.select-view > button {
+  cursor:pointer;
+  outline:none;
+  border:none;
+  padding:5px;
+  font-weight:bold;
+  background:none;
+  user-select:none;
+  border-bottom:2px solid transparent;
+  transition:border .25s;
+  flex-grow: 1;
+}
+
+.select-view > button[data-current-button] {
+  border-bottom:2px solid var(--max-contrast-background);
+}
+
+.select-view > button[disabled] {
+  color:var(--content-dimmed-element);
+  cursor:not-allowed;
+}
+
+.styled-button {
+  cursor:pointer;
+  outline:none;
+  border:2px solid var(--max-contrast-background);
+  padding:2px 4px 2px 4px;
+  font-weight:bold;
+  background:var(--content-background);
+  user-select:none;
+}
+
+.styled-button:disabled {
+  color:var(--content-disabled-element);
+  border:2px solid var(--content-disabled-element);
+  cursor:not-allowed;
+}
+
+.styled-button:focus {
+  border:3px solid black;
+  padding:1px 3px 1px 3px;
+}
+
+.styled-progress {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+}
+
+.styled-input {
+  font-size:10pt;
+  padding:7px;
+  border:none;
+  background:var(--input-background);
+  outline-offset: -2px;
+}
+
+.styled-rule {
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  border-bottom:1px solid var(--content-border);
+}
+
+.top-aligned-label {
+  height:100%;
+  padding-top:7px;
+  margin-top:1px;
+}
+
+.select-sort-icon {
+  height:1.5em;
+  content: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAxNiAyOCI+PGcgaWQ9Imljb21vb24taWdub3JlIj48L2c+PHBhdGggZD0iTTE2IDE3cTAgMC40MDYtMC4yOTcgMC43MDNsLTcgN3EtMC4yOTcgMC4yOTctMC43MDMgMC4yOTd0LTAuNzAzLTAuMjk3bC03LTdxLTAuMjk3LTAuMjk3LTAuMjk3LTAuNzAzdDAuMjk3LTAuNzAzIDAuNzAzLTAuMjk3aDE0cTAuNDA2IDAgMC43MDMgMC4yOTd0MC4yOTcgMC43MDN6TTE2IDExcTAgMC40MDYtMC4yOTcgMC43MDN0LTAuNzAzIDAuMjk3aC0xNHEtMC40MDYgMC0wLjcwMy0wLjI5N3QtMC4yOTctMC43MDMgMC4yOTctMC43MDNsNy03cTAuMjk3LTAuMjk3IDAuNzAzLTAuMjk3dDAuNzAzIDAuMjk3bDcgN3EwLjI5NyAwLjI5NyAwLjI5NyAwLjcwM3oiIGZpbGw9IiMwMDAwMDAiPjwvcGF0aD48L3N2Zz4=);
+}
+
+.styled-button[data-current-button]{
+  color:var(--contrast-text);
+  background:var(--max-contrast-background);
+}
+
+.styled-progress::-webkit-progress-bar {
+  background: var(--input-background);
+  padding: 5px;
+}
+
+.styled-progress::-moz-progress-bar {
+  background: var(--input-text);
+  padding: 5px;
+}
+
+.styled-progress::-webkit-progress-value {
+  background: var(--max-contrast-background);
+}
+
+.small-icon {
+  height: 20px;
+  width: 20px;
+  border:none;
+  background:none;
+  padding:0px;
+}
+
+button.small-icon { cursor:pointer }
+
+.small-icon-badge {
+  background:var(--max-contrast-background);
+  position:relative;
+  bottom:10px;
+  display:inline-flex;
+  align-items: center;
+  border:none;
+  justify-content: space-around;
+  color:var(--contrast-text);
+  font-size:8pt;
+  font-weight:bold;
+  min-width:18px;
+  height:18px;
+  border-radius:10px;
+}
+
+.small-icon-badge > span {
+  margin-left:3px;
+  margin-right:3px;
+}
+
+.small-icon > svg {
+  height: 20px;
+  width: 20px;
+}

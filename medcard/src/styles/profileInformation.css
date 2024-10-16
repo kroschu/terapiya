@@ -1,0 +1,129 @@
+#profile-information {
+  max-width:800px;
+  width:100%;
+  margin:var(--margin-unit);
+  padding-top:calc(.5 * var(--margin-unit));
+  border: 1px solid var(--content-border);
+  height:fit-content;
+  background: var(--content-background);
+  padding: var(--margin-unit);
+  padding-top: calc(.5 * var(--margin-unit));
+}
+
+#profileInformationForm {
+    display:grid;
+    grid-template-columns: 180px 1fr;
+    margin-top: calc(.75 * var(--margin-unit));
+    align-items:center;
+}
+
+#profile-display-options,
+#profile-advanced-options {
+    display:grid;
+    grid-template-columns: 180px 1fr;
+    padding:10px;
+    padding-right:0px;
+    align-items:center;
+}
+
+#profile-advanced-options > pre {
+  margin:0px;
+  font-size:10pt;
+  overflow-y:scroll;
+  user-select:all;
+}
+
+html[data-scrollbars="hidden"] #profile-advanced-options > pre {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+html[data-scrollbars="hidden"] #profile-advanced-options > div::-webkit-scrollbar { display: none; }
+
+#profileInformationForm label {
+    grid-column: 1 / 2 ;
+}
+
+#profileInformationForm details {
+    grid-column: 1 / 3 ;
+}
+
+#profileInformationForm input,
+#profile-information-userid {
+    grid-column: 2 / 3 ;
+    margin-bottom:.5em;
+    overflow-y:auto;
+}
+
+#profileInformationForm input {
+    border:none;
+    background:var(--input-background);
+}
+
+#profileSelector {
+    cursor: pointer;
+    display:block;
+    height:180px;
+    max-height:180px;
+    width:180px;
+    object-fit:cover;
+    border-radius:90px;
+    grid-column: 2 / 3 ;
+    margin:auto;
+}
+
+div#profileSelector {
+    background : #ababab;
+}
+
+#profileSelector:hover {
+    filter: brightness(80%);
+    transition: filter 0.5s ease;
+}
+
+#profileInformationFormSubmit {
+    grid-column: 1 / 3 ;
+}
+
+#profileInformationFormSubmit > button {
+    margin-top:10px;
+    margin-right:10px;
+}
+
+#profileInformationFormProgress {
+    grid-column: 1 / 3 ;
+    padding-top: 10px;
+    animation: pulse-opacity 2s infinite; 
+    animation-timing-function:ease;
+}
+
+#profileInformationFormProgress > progress {
+  width: 100%
+}
+
+#profileInformationFormHidden {
+    display:none;
+}
+
+@media only screen and (max-width: 600px) {
+
+    #profileInformationForm,
+    #profile-advanced-options,
+    #profile-display-options {
+      grid-template-columns: 1fr 
+    }
+
+    #profileInformationFormProgress,
+    #profile-information-userid,
+    #profileInformationForm > input { 
+      grid-column: 1 / 2;
+    }
+
+    #profile-advanced-options > pre {
+      padding: 5px
+    }
+
+    #profileSelector {
+      grid-column: 1 / 2;
+    }
+} 

@@ -1,0 +1,69 @@
+.invite-candidate,
+.disinvite-candidate,
+.ban-candidate,
+.unban-candidate,
+.removal-candidate {
+  display:grid;
+  grid-template-columns:30px 1fr;
+  position:relative;
+  background:none;
+  border:none;
+  font-size:unset;
+  cursor:pointer;
+  align-items:center;
+  justify-items:left;
+  max-width:100%;
+}
+
+.disinvite-candidate {
+  opacity:.5
+}
+
+.invite-candidate:hover,
+.disinvite-candidate:hover,
+.ban-candidate:hover
+.unban-candidate:hover
+.removal-candidate:hover {
+  left:5px;
+}
+
+.invite-candidate .small-icon,
+.disinvite-candidate .small-icon,
+.ban-candidate .small-icon,
+.unban-candidate .small-icon,
+.removal-candidate .small-icon{
+  padding-right: 10px;
+}
+
+.invite-candidate-knocked {
+  grid-column: 1/3;
+  font-size:10pt;
+  color:var(--content-text-dimmed);
+  margin-bottom:5px;
+}
+
+#invite-search-divider {
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+#invite-select-view {
+  margin-top:20px;
+}
+
+#invite-search-directory {
+  margin-top:20px;
+}
+
+#invite-join-members,
+#invite-kick-members,
+#invite-ban-members,
+#invite-unban-members {
+  padding-top:10px;
+}
+
+#invite-select-wrapper {
+  transition:height .25s ease;
+  overflow-y: auto;
+  max-height:60vh;
+}

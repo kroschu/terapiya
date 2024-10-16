@@ -1,0 +1,46 @@
+.preview-quote {
+  /* padding:10px; */
+  color:var(--content-secondary-text);
+}
+
+.preview-quote svg {
+  padding-right: .25em;
+  height: 1em;
+}
+
+.preview-media-fragment,
+.preview-pin {
+  color:var(--content-secondary-text);
+}
+
+.preview-media-fragment-position, 
+.preview-pin {
+  display:flex;
+  align-items:center;
+}
+
+.preview-media-fragment svg,
+.preview-pin svg {
+  height: 1em;
+}
+
+.preview-media-fragment img,
+.preview-media-fragment video {
+  display:none;
+}
+
+.preview-media-fragment canvas {
+  max-width:100%;
+  display:block;
+  border-radius:20px;
+  margin-top:10px;
+  background: var(--content-dimmed-element);
+}
+
+.preview-quote {
+  margin-top:10px;
+}
+
+.preview-media-fragment audio {
+  margin-top:10px;
+}

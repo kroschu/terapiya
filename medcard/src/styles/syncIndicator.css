@@ -1,0 +1,15 @@
+#sync-indicator {
+  position:fixed;
+  bottom:0px;
+  right:0px;
+  margin:5px;
+  font-size:8pt;
+  background:var(--content-background);
+  z-index:15;
+  padding:0px 3px 0px 3px;
+  border-radius:5px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .sync-hidden { visibility: hidden }
+}

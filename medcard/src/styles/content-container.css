@@ -1,0 +1,141 @@
+#content-container {
+    position: relative;
+    overflow: auto;
+    height: calc(100% - var(--navHeight));
+    --contentWidth: calc(100%);
+    width: var(--contentWidth);
+    transition: var(--transitionSizing);
+    background: var(--content-backdrop);
+}
+
+#content-container[data-touches="1"]
+#content-container[data-touches="2"] {
+  touch-action: "none"
+}
+
+html[data-scrollbars="hidden"] #content-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width:none;
+}
+
+html[data-scrollbars="hidden"] #content-container::-webkit-scrollbar { display: none; }
+
+#image-view,
+#document-view {
+    position:relative;
+    display: flex;
+    /* the below forces chrome to recalculate overflow on zoom It's not
+     * necessary for Firefox or Webkit ... Not seeing an effect any more, so
+     * this bug may be fixed on newer chromium */
+    height: var(--contentHeightPx);
+    width: var(--contentWidthPx); 
+    transform-origin : top left;
+    transform: scale(var(--zoomFactor));
+}
+
+#document-view {
+    left: max(0px, calc(50% - (var(--contentWidthPx) * var(--zoomFactor)) / 2));
+  }
+
+#image-view-wrapper {
+    position:relative;
+    left: max(0px, calc(50% - (var(--contentWidthPx) * var(--zoomFactor)) / 2));
+}
+
+.page-wrapper { position:relative; }
+
+.page-wrapper canvas {
+    position:relative;
+    z-index:-1; /* prevents an apparent stacking bug in chromium */
+    width: var(--pdfWidthPx);
+    height: var(--pdfHeightPx);
+}
+
+#document-view-loading {
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    animation-timing-function:ease;
+    background: var(--content-background)
+}
+
+#document-view-loading * {
+  animation: pulse-opacity 2s infinite; 
+}
+
+#content-mobile-buttons {
+    position:fixed;
+    z-index:7;
+    top:0px;
+    transition: var(--transitionSizing);
+    right:0px;
+    width: calc(var(--sidepanelWidth));
+    margin-top:5px;
+    font-size:24px;
+    pointer-events:none;
+}
+
+#content-mobile-buttons[data-hide-buttons] {
+    top:-50px;
+    transition: var(--transitionSizing);
+}
+
+#panel-toggle {
+    pointer-events:all;
+    border:none;
+    outline:none;
+    font-size:24px;
+    text-align:center;
+    vertical-align:middle;
+    background:transparent;
+    cursor:pointer;
+    float:right;
+    color:var(--mobileButtonColor);
+}
+
+#show-annotations {
+    pointer-events:all;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+    #content-container {
+        height: calc(100% - (0.8 * var(--navHeight)));
+    }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #content-mobile-buttons {
+      display:none;
+    }
+
+    #content-container {
+        --contentWidth: calc(max(475px, 100% - var(--sidepanelWidth)));
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+} 
+
+/* standard DPI */
+@media only screen and (min-width: 1280px) {
+    #panel-toggle {
+        visibility:hidden;
+    }
+}
+
+/* high DPI laptop */
+@media only screen and (min-width: 1400px) {
+}
+
+/* larger monitor */
+@media only screen and (min-width: 1800px) {
+}

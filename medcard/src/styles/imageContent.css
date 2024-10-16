@@ -1,0 +1,39 @@
+#image-view[data-image-selecting] {
+  touch-action:none;
+}
+
+#image-view img { 
+  pointer-events:none;
+}
+
+#image-view-wrapper {
+  height: calc(var(--zoomFactor) * var(--contentHeightPx));
+  width: calc(var(--zoomFactor) * var(--contentWidthPx)); 
+  overflow:hidden;
+}
+
+#image-overlay {
+  position:absolute;
+  height:100%;
+  width:100%;
+  opacity:0.4;
+  cursor:crosshair;
+}
+
+.image-annotation-rect { cursor: pointer; }
+
+[data-annotations-hidden] #image-overlay {
+  display:none;
+}
+
+.image-annotation-rect-drag {
+  cursor: grab;
+}
+
+.image-annotation-rect-resize-w {
+  cursor: ew-resize;
+}
+
+.image-annotation-rect-resize-h {
+  cursor: ns-resize;
+}

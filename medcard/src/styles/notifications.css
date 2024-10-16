@@ -1,0 +1,79 @@
+#notifications-listing {
+  width: 100%;
+  margin: 0px var(--margin-unit) 0 var(--margin-unit);
+  max-width: calc(800px + (2 * var(--margin-unit)));
+}
+
+.notification, .invite-entry {
+  margin-top:calc(.5 * var(--margin-unit));
+  border: 1px solid var(--content-border);
+  background:var(--content-background);
+}
+
+.unread-notification, .invite-entry {
+  border: 2px solid black;
+}
+
+.invite-entry {
+    padding: 1em; 
+}
+
+.notification-contents {
+  padding-bottom:10px;
+}
+
+.discussion-intro {
+  padding:10px;
+  font-size:10pt;
+}
+
+.discussion-topic {
+  padding:10px;
+  padding-left:20px;
+}
+
+.discussion-topic .non-text-topic{
+  color:var(--content-secondary-text);
+  display:flex;
+  align-items:center;
+}
+
+.discussion-topic .non-text-topic svg{
+  height: 1em;
+}
+
+.notification-header > img {
+    width:20px;
+    height:20px;
+    border-radius:30px;
+    position:relative;
+    left:-5px;
+    object-fit:cover;
+    user-select:none;
+}
+
+.notification-header {
+    padding:10px;
+    display:flex;
+    align-items: center;
+    font-size:10pt;
+}
+
+.notification-date-indicator {
+  margin-top:calc(.5 * var(--margin-unit));
+  font-size:10pt;
+  color:var(--backdrop-text)
+}
+
+.notification-header .sender {
+    font-weight:bold;
+    color: var(--user_dark);
+}
+
+.notification-body {
+    padding:20px;
+    padding-top:10px;
+    border-left: 5px solid var(--user_light);
+    margin-left:13px;
+    margin-bottom:13px;
+}

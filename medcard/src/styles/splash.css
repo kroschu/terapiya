@@ -1,0 +1,33 @@
+#splash-logo {
+    height: 200px;
+    width: 200px;
+}
+
+#splash-logo-back {
+  fill:var(--content-border);
+  position:relative;
+  transform-box:fill-box;
+  transform-origin:center;
+  animation: pulse-scale 2s infinite; 
+  animation-timing-function:ease;
+}
+
+#splash-loader{
+    padding-top:20px;
+    color:var(--backdrop-text);
+    font-weight:600;
+}
+
+#splash-wrapper {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+    width:100%;
+    background:var(--content-backdrop);
+}
+
+#splash-logo-backdrop {
+  background:var(--content-background);
+}
